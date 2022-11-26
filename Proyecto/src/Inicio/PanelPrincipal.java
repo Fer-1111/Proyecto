@@ -14,7 +14,6 @@ public class PanelPrincipal extends JPanel implements KeyListener{
         super();
         av = new Avion();
         bl = new Blanco();
-        add(getJTextArea(), null);
         setLayout(null);
         setSize(1280, 720);
         setVisible(true);
