@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class PanelPrincipal extends JPanel implements KeyListener{
+public class PanelPrincipal extends JPanel implements KeyListener, ActionListener{
     private final Avion av;
     private final Blanco bl;
     private JTextArea jTextArea = null;
@@ -17,6 +17,9 @@ public class PanelPrincipal extends JPanel implements KeyListener{
         setLayout(null);
         setSize(1280, 720);
         setVisible(true);
+        Timer t = new Timer(16,this);
+        t.start();
+        
     }
     @Override
     public void paint(Graphics g){
@@ -44,4 +47,16 @@ public class PanelPrincipal extends JPanel implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
     }
+    
+    public void actionPerformed ( ActionEvent ae){ //deber ir actualizando todo, avion 
+       
+        av.MoverAvion();
+        bl.Mover();
+        
+        repaint();
+        
+        //System.out.println("Holi");
+    }
+    
+    
 }

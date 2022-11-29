@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 public class Avion extends JLabel{
     private ArrayMisiles MisilesAvion;
-    float x = 0f;   // posicion x del avion
+    float x = 1080;   // posicion x del avion
     float y = 0f;   //posicion y del avion
     
     public Avion(){
@@ -19,7 +19,7 @@ public class Avion extends JLabel{
     @Override
     public void paint(Graphics g){
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/avion.jpg"));
-        g.drawImage(Fondo.getImage(), 0, 0, 500,300,this);
+        g.drawImage(Fondo.getImage(), (int)x, (int)y, 200,60,this);
         MisilesAvion.paint(g);
     }    
     public Misil LanzarMisil(){
@@ -27,5 +27,10 @@ public class Avion extends JLabel{
     }
     public int CantMisiles(){
         return MisilesAvion.arrayLong();
+    }
+    
+    public void MoverAvion(){
+        x = x - 1;
+        
     }
 }

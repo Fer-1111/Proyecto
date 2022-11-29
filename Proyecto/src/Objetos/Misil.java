@@ -16,4 +16,9 @@ public class Misil extends JLabel{
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/misil.png"));
         g.drawImage(Fondo.getImage(), 0, 0, 100,50,this);
     }
+    
+    public void Mover(){//llamar en repaint
+        //cambiar x e y, dependiendo del angulo y la velocidad
+        
+    }
 }
