@@ -31,6 +31,9 @@ public class Avion extends JLabel{
     
     public void MoverAvion(){
         x = x - 1;
+        if(x == -200){
+            x = 1265;
+        }
         
     }
 }

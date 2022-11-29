@@ -51,7 +51,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     public void actionPerformed ( ActionEvent ae){ //deber ir actualizando todo, avion 
        
         av.MoverAvion();
-        bl.Mover();
+        bl.MoverBlanco();
         
         repaint();
         
