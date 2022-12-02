@@ -20,7 +20,7 @@ public class Avion extends JLabel{
     }
     @Override
     public void paint(Graphics g){
-        ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/avion.jpg"));
+        ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/avion.png"));
         g.drawImage(Fondo.getImage(), (int)x, (int)y, 200,60,this);
         MisilesAvion.paint(g);
     }    

@@ -11,8 +11,8 @@ public class Blanco extends JLabel{
     public float velXBlanco;
     @Override
     public void paint(Graphics g){
-        ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/BlancoAuto.jpg"));
-        g.drawImage(Fondo.getImage(), (int)x,(int)y , 200,150,this);
+        ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/BlancoAuto.png"));
+        g.drawImage(Fondo.getImage(), (int)x,(int)y , 150,100,this);
     }
     
     public void MoverBlancoIzquierda(){
