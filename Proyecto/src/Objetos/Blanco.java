@@ -8,7 +8,7 @@ public class Blanco extends JLabel{
     
     public float x = 1265;   // posicion x del blanco
     public float y = 489;   //posicion y del blanco, con y fijo sobre el suelo
-    public float velX;
+    public float velXBlanco;
     @Override
     public void paint(Graphics g){
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/BlancoAuto.jpg"));
@@ -16,13 +16,13 @@ public class Blanco extends JLabel{
     }
     
     public void MoverBlancoIzquierda(){
-        velX = -5f;
+        velXBlanco = -5f;
     }
 
     public void MoverBlancoDerecha(){
-        velX = 5f;           
+        velXBlanco = 5f;           
     }
-    public void LimiteDelMapa(){
+    public void LimiteDelMapaBlanco(){
         if(x <= -200){
             x = 1250;
         }

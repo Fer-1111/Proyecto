@@ -9,7 +9,6 @@ import javax.swing.*;
 public class PanelPrincipal extends JPanel implements KeyListener, ActionListener{
     private final Avion av;
     private final Blanco bl;
-    private JTextArea jTextArea = null;
     public PanelPrincipal() {
         super();
         av = new Avion();
@@ -41,11 +40,17 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyChar() == 'a' || e.getKeyChar() == 'A' || e.getExtendedKeyCode() == KeyEvent.VK_LEFT){          
+        if(e.getKeyChar() == 'j' || e.getKeyChar() == 'J' || e.getExtendedKeyCode() == KeyEvent.VK_J){          
            bl.MoverBlancoIzquierda();
        }
-       if(e.getKeyChar() == 'd' || e.getKeyChar() == 'D' || e.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+       if(e.getKeyChar() == 'k' || e.getKeyChar() == 'K' || e.getExtendedKeyCode() == KeyEvent.VK_K){
            bl.MoverBlancoDerecha();
+       }
+       if(e.getKeyChar() == 'a' || e.getKeyChar() == 'A' || e.getExtendedKeyCode() == KeyEvent.VK_LEFT){
+           av.MoverAvionIzquierda();
+       }
+       if(e.getKeyChar() == 'd' || e.getKeyChar() == 'D' || e.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           av.MoverAvionDerecha();
        }
        if(e.getKeyChar() == 'w' || e.getKeyChar() == 'W' || e.getExtendedKeyCode() == KeyEvent.VK_UP){
            av.MoverAvionArriba();
@@ -63,15 +68,13 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     
     public void actionPerformed ( ActionEvent ae){ //deber ir actualizando todo, avion 
        
-        av.MoverAvion();
-        //bl.MoverBlancoIzquierda();
-        //bl.MoverBlancoDerecha();
-        bl.x = bl.x + bl.velX;
-        bl.LimiteDelMapa();
+        av.x = av.x + av.velXAvion;
+        bl.x = bl.x + bl.velXBlanco;
+        bl.LimiteDelMapaBlanco();
+        av.LimiteDelMapaAvion();
         
         repaint();
         
-        //System.out.println("Holi");
     }
     
     

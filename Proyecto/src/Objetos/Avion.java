@@ -9,6 +9,7 @@ public class Avion extends JLabel{
     public float x = 1080;   // posicion x del avion
     float y = 0;   //posicion y del avion
     float posY = 5f;
+    public float velXAvion;
     
     public Avion(){
         
@@ -30,8 +31,14 @@ public class Avion extends JLabel{
         return MisilesAvion.arrayLong();
     }
     
-    public void MoverAvion(){
-        x = x - 1;
+    public void MoverAvionIzquierda(){
+        velXAvion = -2;
+        if(x == -200){
+            x = 1265;
+        }        
+    }
+    public void MoverAvionDerecha(){
+        velXAvion = 2;
         if(x == -200){
             x = 1265;
         }        
@@ -46,6 +53,14 @@ public class Avion extends JLabel{
        y = y + posY;
         if(y >= 380){
           y = 380;
+        }
+    }
+    public void LimiteDelMapaAvion(){
+        if(x <= -200){
+            x = 1250;
+        }
+        if(x >= 1265){
+            x = -195;
         }
     }
 }
