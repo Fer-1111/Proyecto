@@ -6,8 +6,9 @@ import javax.swing.JLabel;
 
 public class Avion extends JLabel{
     private ArrayMisiles MisilesAvion;
-    float x = 1080;   // posicion x del avion
-    float y = 0f;   //posicion y del avion
+    public float x = 1080;   // posicion x del avion
+    float y = 0;   //posicion y del avion
+    float posY = 5f;
     
     public Avion(){
         
@@ -33,7 +34,18 @@ public class Avion extends JLabel{
         x = x - 1;
         if(x == -200){
             x = 1265;
+        }        
+    }
+    public void MoverAvionArriba(){
+       y = y - posY;
+        if(y <= 0){           
+          y = 0;
         }
-        
+    }
+    public void MoverAvionAbajo(){
+       y = y + posY;
+        if(y >= 380){
+          y = 380;
+        }
     }
 }

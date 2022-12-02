@@ -17,7 +17,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         setLayout(null);
         setSize(1280, 720);
         setVisible(true);
-        Timer t = new Timer(16,this);
+        Timer t = new Timer(1,this);
         t.start();
         
     }
@@ -41,17 +41,33 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
 
     @Override
     public void keyPressed(KeyEvent e) {
-     
+        if(e.getKeyChar() == 'a' || e.getKeyChar() == 'A' || e.getExtendedKeyCode() == KeyEvent.VK_LEFT){          
+           bl.MoverBlancoIzquierda();
+       }
+       if(e.getKeyChar() == 'd' || e.getKeyChar() == 'D' || e.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
+           bl.MoverBlancoDerecha();
+       }
+       if(e.getKeyChar() == 'w' || e.getKeyChar() == 'W' || e.getExtendedKeyCode() == KeyEvent.VK_UP){
+           av.MoverAvionArriba();
+       }
+       if(e.getKeyChar() == 's' || e.getKeyChar() == 'S' || e.getExtendedKeyCode() == KeyEvent.VK_DOWN){
+           av.MoverAvionAbajo();
+       }
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+         
     }
     
     public void actionPerformed ( ActionEvent ae){ //deber ir actualizando todo, avion 
        
         av.MoverAvion();
-        bl.MoverBlanco();
+        //bl.MoverBlancoIzquierda();
+        //bl.MoverBlancoDerecha();
+        bl.x = bl.x + bl.velX;
+        bl.LimiteDelMapa();
         
         repaint();
         
