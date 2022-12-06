@@ -6,18 +6,19 @@ import javax.swing.JLabel;
 
 public class Avion extends JLabel{
     
-    private final ArrayMisiles MisilesAvion;
+    public final ArrayMisiles MisilesAvion;
     public float x;
     public float y;
-    public float posY;
-    public float posX;
+    public float velX;
+    public float velY;
     
     public Avion(int cantMisiles){
         MisilesAvion = new ArrayMisiles();
         x = 1080;
         y = 0;
+        velY = 1;
         for(int iteradorMisil = 0; iteradorMisil < cantMisiles ; iteradorMisil++){
-            MisilesAvion.addMisil(new Misil(true,posX,posY));
+            MisilesAvion.addMisil(new Misil());
         }
     }
     
@@ -31,40 +32,42 @@ public class Avion extends JLabel{
     }
     
     public void lanzarMisil(){
-        
-        MisilesAvion.arrayPosicionMisil(0).mover();
-        
+        if(!MisilesAvion.estaVacio()){
+            MisilesAvion.arrayPosicionMisil(0).mover();
+        }
     }
     public void girarMisil(float a, float b){
-        
-        MisilesAvion.arrayPosicionMisil(0).girar(a, b);
+        if(!MisilesAvion.estaVacio()){
+            MisilesAvion.arrayPosicionMisil(0).girar(a, b);
+        }
         
     }
     public boolean checkBlanco(float a, float b){
-        
-        return MisilesAvion.arrayPosicionMisil(0).checkearObjectivo(a, b);
-        
+        if(!MisilesAvion.estaVacio()){
+            return MisilesAvion.arrayPosicionMisil(0).checkearObjectivo(a, b);
+        }
+        return false;
     }
     public void MoverAvionIzquierda(){
-        posX = -2;
+        velX = -1;
         if(x == -200){
             x = 1265;
         }        
     }
     public void MoverAvionDerecha(){
-        posY = 2;
+        velX = 1;
         if(x == -200){
             x = 1265;
         }        
     }
     public void MoverAvionArriba(){
-        y = y - posY;
+        y = y - velY;
         if(y <= 0){           
           y = 0;
         }
     }
     public void MoverAvionAbajo(){
-        y = y + posY;
+        y = y + velY;
         if(y >= 380){
           y = 380;
         }
@@ -77,4 +80,12 @@ public class Avion extends JLabel{
             x = -195;
         }
     }
+    
+    public float posicionX(){
+        return x;
+    }
+    public float posicionY(){
+        return y;
+    }
+    
 }

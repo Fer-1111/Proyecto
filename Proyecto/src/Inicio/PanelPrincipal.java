@@ -2,6 +2,7 @@ package Inicio;
 
 import Objetos.Avion;
 import Objetos.Blanco;
+import static Objetos.Misil.getRandomIntegerBetweenRange;
 import Trignometricas.Vector2;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,15 +14,15 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     private final Blanco bl;
     public Vector2 posicionMouse;
     public int contador;
+    int cantMisiles;
     
     public PanelPrincipal() {
         super();
-        int cantMisiles = 10;
-        av = new Avion(10);
+        cantMisiles = 10;
+        av = new Avion(cantMisiles);
         bl = new Blanco();
         posicionMouse = new Vector2(0,0);
-        contador = 0;
-        
+        contador = 1;       
         setSize(1280, 720);
         Timer t = new Timer(1,this);
         t.start();    
@@ -48,16 +49,24 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
            bl.MoverBlancoDerecha();
        }
        if(e.getKeyChar() == 'a' || e.getKeyChar() == 'A'){
-           av.MoverAvionIzquierda();
+           av.MoverAvionIzquierda();           
        }
        if(e.getKeyChar() == 'd' || e.getKeyChar() == 'D'){
-           av.MoverAvionDerecha();
+           av.MoverAvionDerecha();        
        }
        if(e.getKeyChar() == 'w' || e.getKeyChar() == 'W'){
            av.MoverAvionArriba();
        }
        if(e.getKeyChar() == 's' || e.getKeyChar() == 'S'){
            av.MoverAvionAbajo();
+       }
+       if(e.getExtendedKeyCode() == KeyEvent.VK_SPACE){
+           av.MisilesAvion.arrayPosicionMisil(0).velocidad = 0.5f;
+           if(contador == 1){
+               av.MisilesAvion.arrayPosicionMisil(0).angulo = (float) getRandomIntegerBetweenRange(40, 140);
+               contador--;
+           }
+           
        }
     }
         @Override
@@ -68,16 +77,21 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     @Override
     public void actionPerformed ( ActionEvent me){
        
-        av.x = av.x + av.posX;
+        av.x = av.x + av.velX;
         bl.x = bl.x + bl.velX;
+        if(contador == 1){
+        av.MisilesAvion.arrayPosicionMisil(0).x = (av.x+80) + av.velX;
+        av.MisilesAvion.arrayPosicionMisil(0).y = (av.y+60) + av.velY;
+        }
         bl.LimiteDelMapaBlanco();
         av.LimiteDelMapaAvion(); 
         
         if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
             av.girarMisil(bl.posicionX(), bl.posicionY());
+            //av.MisilesAvion.getMisil();
         }
+        av.MisilesAvion.arrayPosicionMisil(0).mover();
         
-        av.lanzarMisil();
         repaint();  
     }
     @Override

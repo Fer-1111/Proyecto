@@ -10,23 +10,28 @@ import java.awt.Polygon;
 
 public class Misil{
     
-    float x, y;
-    float angulo = 100;
-    float radio = 350;
-    float velAngular = 5f;
-    float velocidad = 6f;
-    float t = 10f;
+    public float x;
+    public float y;
+    public float angulo;
+    private float radio;
+    private float velAngular;
+    public float velocidad;
+    private float t;
+    public float velX;
+    public float velY;
     
-    public Misil(boolean sale, float x, float y){
-        if(sale==false){
-           this.x = x+80;
-           this.y = y+60;
-        }
-        else{
-            x = 1f;
-            y = 1f;
-        }
+    public Misil(){
+        x = 1170;
+        y = 60;
+        angulo = 180;
+        radio = 350;
+        velAngular = 5f;
+        t = 10f;
+        velX=1;
+        velY=1;
     }
+    
+    
     public void paint(Graphics g){
         g.setColor(Color.black);
        // g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
@@ -122,17 +127,28 @@ public class Misil{
     
     public void mover(){//llamar en repaint
         //cambiar x e y, dependiendo del angulo y la velocidad
-        Vector2 frente = new Vector2((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
-        frente.escalar(velocidad);
+            Vector2 frente = new Vector2((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
+            frente.escalar(velocidad);
         
-        x += frente.x;
-        y += frente.y;
+            x += frente.x;
+            y += frente.y;
         
-        if(x > Ventana.WIDTH) x -= Ventana.WIDTH;
-        if(x < 0) x += Ventana.WIDTH;
+            if(x > Ventana.WIDTH) x -= Ventana.WIDTH;
+            if(x < 0) x += Ventana.WIDTH;
         
-        if(y > Ventana.HEIGHT) y -= Ventana.HEIGHT;
-        if(y < 0) y += Ventana.HEIGHT;
+            if(y > Ventana.HEIGHT) y -= Ventana.HEIGHT;
+            if(y < 0) y += Ventana.HEIGHT;
+        
     }
+    
+    public static double getRandomIntegerBetweenRange(double min, double max){
+    double x = (int)(Math.random()*((max-min)+1))+min;
+    return x;
+    }
+    
+    /*public void moverMisilDerecha(){
+        velX = 2;
+       
+    }*/
     
 }

@@ -10,18 +10,16 @@ public class ArrayMisiles{
     public void addMisil(Misil m){
         Misiles.add(m);
     }
-     public int arrayLong(){
-        return Misiles.size();
+     public boolean estaVacio(){
+        return Misiles.size() == 0;
     }
     public Misil getMisil() {
-        if (Misiles.size() <= 0) return null;
-        else {
-            Misil m = Misiles.remove(0);
-            return m;
-        }
+        return Misiles.remove(0);
     }
     public void paint(Graphics g){
-        Misiles.get(0).paint(g);
+        if(Misiles.size() > 0){
+            Misiles.get(0).paint(g);
+        }
     }
     public Misil arrayPosicionMisil(int i){
         return Misiles.get(i);
