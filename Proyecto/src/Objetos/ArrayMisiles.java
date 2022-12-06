@@ -13,7 +13,7 @@ public class ArrayMisiles{
      public int arrayLong(){
         return Misiles.size();
     }
-    public Misil getBebida() {
+    public Misil getMisil() {
         if (Misiles.size() <= 0) return null;
         else {
             Misil m = Misiles.remove(0);
@@ -23,6 +23,7 @@ public class ArrayMisiles{
     public void paint(Graphics g){
         Misiles.get(0).paint(g);
     }
-    
-    //mover misiles
+    public Misil arrayPosicionMisil(int i){
+        return Misiles.get(i);
+    }
 }

@@ -1,32 +1,40 @@
 package Objetos;
 
+import Trignometricas.Angular;
+import Trignometricas.Vector2;
 import Inicio.Ventana;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
-import javax.swing.ImageIcon;
 
 public class Misil{
+    
     float x, y;
-    float angulo = 43; // 0 - 360, sentido del reloj
-    float radio = 200;
+    float angulo = 100;
+    float radio = 350;
     float velAngular = 5f;
-    float velocidad = 15f;
-    float t = 30f;
-    public Misil(){
-        x = Ventana.WIDTH / 2f;
-        y = Ventana.HEIGHT / 2f;
-        
+    float velocidad = 6f;
+    float t = 10f;
+    
+    public Misil(boolean sale, float x, float y){
+        if(sale==false){
+           this.x = x+80;
+           this.y = y+60;
+        }
+        else{
+            x = 1f;
+            y = 1f;
+        }
     }
     public void paint(Graphics g){
         g.setColor(Color.black);
-        g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+       // g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
 
         Vector2 linea = new Vector2((float) Math.cos(Math.toRadians(angulo + 90)), (float) Math.sin(Math.toRadians(angulo + 90)));
         linea.escalar(radio);
 
-        g.drawLine((int) (x + linea.x), (int) (y + linea.y), (int) (x - linea.x), (int) (y - linea.y));
+        //g.drawLine((int) (x + linea.x), (int) (y + linea.y), (int) (x - linea.x), (int) (y - linea.y));
         
         Polygon poly = new Polygon();
         
@@ -56,6 +64,7 @@ public class Misil{
         
         g.setColor(Color.black);
         g.drawPolygon(poly);
+        
     }
     
     public boolean checkearObjectivo(float x, float y) {

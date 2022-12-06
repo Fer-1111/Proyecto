@@ -2,56 +2,47 @@ package Inicio;
 
 import Objetos.Avion;
 import Objetos.Blanco;
-import Objetos.Misil;
-import Objetos.Vector2;
+import Trignometricas.Vector2;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class PanelPrincipal extends JPanel implements KeyListener, ActionListener, MouseListener, MouseMotionListener{
+   
     private final Avion av;
     private final Blanco bl;
     public Vector2 posicionMouse;
-    public int contador = 0;
-    public Misil m;
+    public int contador;
     
     public PanelPrincipal() {
         super();
-        av = new Avion();
+        int cantMisiles = 10;
+        av = new Avion(10);
         bl = new Blanco();
-        setLayout(null);
-        setSize(1280, 720);
-        setVisible(true);
-        Timer t = new Timer(16,this);
-        t.start();
-        
         posicionMouse = new Vector2(0,0);
-        m = new Misil();
+        contador = 0;
         
+        setSize(1280, 720);
+        Timer t = new Timer(1,this);
+        t.start();    
     }
+    
+    @Override
     public void paint(Graphics g){
         super.paint(g);
-    
+        
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"));
         g.drawImage(Fondo.getImage(), 0, 0, 1280,660,this);
+        
         av.paint(g);
         bl.paint(g);
-        //Toolkit.getDefaultToolkit().sync();
-       // g.dispose();
-        g.fillOval((int)posicionMouse.x - 5, (int)posicionMouse.y -5, 10, 10);
-        m.paint(g);
+        
+        Toolkit.getDefaultToolkit().sync();
     }
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-       
-    }
-
-    @Override
+        @Override
     public void keyPressed(KeyEvent e) {
         if(e.getExtendedKeyCode() == KeyEvent.VK_LEFT){          
-           bl.MoverBlancoIzquierda();
-                    
+           bl.MoverBlancoIzquierda();                
        }
        if(e.getExtendedKeyCode() == KeyEvent.VK_RIGHT){
            bl.MoverBlancoDerecha();
@@ -68,66 +59,41 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
        if(e.getKeyChar() == 's' || e.getKeyChar() == 'S'){
            av.MoverAvionAbajo();
        }
-
     }
-
-    public void keyReleased(KeyEvent e) {
-         
-    }
-
-    
-    public void mouseClicked(MouseEvent me) {
-                m.mover(); 
-    }
-
-    
-    public void mousePressed(MouseEvent me) {
- 
-    }
-
-    
-    public void mouseReleased(MouseEvent me) {
-   
-    }
-
-    
-    public void mouseEntered(MouseEvent me) {
-       
-    }
-
-    
-    public void mouseExited(MouseEvent me) {
-        
-    }
-
-    
-    public void mouseDragged(MouseEvent me) {
-       
-    }
-    
+        @Override
     public void mouseMoved(MouseEvent me) {
         posicionMouse.x = me.getX();
         posicionMouse.y = me.getY();
-                m.mover(); 
     }
-    public void actionPerformed ( ActionEvent ae){ //deber ir actualizando todo, avion 
+    @Override
+    public void actionPerformed ( ActionEvent me){
        
-        av.x = av.x + av.velXAvion;
-        bl.x = bl.x + bl.velXBlanco;
+        av.x = av.x + av.posX;
+        bl.x = bl.x + bl.velX;
         bl.LimiteDelMapaBlanco();
-        av.LimiteDelMapaAvion();
-        m.mover(); 
-        System.out.println(m.checkearObjectivo(posicionMouse.x, posicionMouse.y));
-        if(m.checkearObjectivo(posicionMouse.x, posicionMouse.y)){
-            m.girar(posicionMouse.x, posicionMouse.y);
-            System.out.println("pase x aca");
-            
+        av.LimiteDelMapaAvion(); 
+        
+        if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
+            av.girarMisil(bl.posicionX(), bl.posicionY());
         }
-        repaint();
         
-        
-        
+        av.lanzarMisil();
+        repaint();  
     }
-    
-    
+    @Override
+    public void keyTyped(KeyEvent e){}
+    @Override
+    public void keyReleased(KeyEvent e){}
+    @Override
+    public void mouseClicked(MouseEvent me){}
+    @Override
+    public void mousePressed(MouseEvent me){}
+    @Override
+    public void mouseReleased(MouseEvent me){}
+    @Override
+    public void mouseEntered(MouseEvent me){}
+    @Override
+    public void mouseExited(MouseEvent me){}
+    @Override
+    public void mouseDragged(MouseEvent me){}
 }

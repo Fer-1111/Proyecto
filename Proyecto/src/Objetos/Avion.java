@@ -5,52 +5,66 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class Avion extends JLabel{
-    private ArrayMisiles MisilesAvion;
-    public float x = 1080;   // posicion x del avion
-    float y = 0;   //posicion y del avion
-    float posY = 5f;
-    public float velXAvion;
     
-    public Avion(){
-        
+    private final ArrayMisiles MisilesAvion;
+    public float x;
+    public float y;
+    public float posY;
+    public float posX;
+    
+    public Avion(int cantMisiles){
         MisilesAvion = new ArrayMisiles();
-        for(int i = 0 ; i < 1 ; i++){
-            MisilesAvion.addMisil(new Misil());
+        x = 1080;
+        y = 0;
+        for(int iteradorMisil = 0; iteradorMisil < cantMisiles ; iteradorMisil++){
+            MisilesAvion.addMisil(new Misil(true,posX,posY));
         }
     }
+    
     @Override
     public void paint(Graphics g){
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/avion.png"));
         g.drawImage(Fondo.getImage(), (int)x, (int)y, 200,60,this);
+        
         MisilesAvion.paint(g);
-    }    
-    public Misil LanzarMisil(){
-        return null;
-    }
-    public int CantMisiles(){
-        return MisilesAvion.arrayLong();
+        repaint();
     }
     
+    public void lanzarMisil(){
+        
+        MisilesAvion.arrayPosicionMisil(0).mover();
+        
+    }
+    public void girarMisil(float a, float b){
+        
+        MisilesAvion.arrayPosicionMisil(0).girar(a, b);
+        
+    }
+    public boolean checkBlanco(float a, float b){
+        
+        return MisilesAvion.arrayPosicionMisil(0).checkearObjectivo(a, b);
+        
+    }
     public void MoverAvionIzquierda(){
-        velXAvion = -2;
+        posX = -2;
         if(x == -200){
             x = 1265;
         }        
     }
     public void MoverAvionDerecha(){
-        velXAvion = 2;
+        posY = 2;
         if(x == -200){
             x = 1265;
         }        
     }
     public void MoverAvionArriba(){
-       y = y - posY;
+        y = y - posY;
         if(y <= 0){           
           y = 0;
         }
     }
     public void MoverAvionAbajo(){
-       y = y + posY;
+        y = y + posY;
         if(y >= 380){
           y = 380;
         }

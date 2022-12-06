@@ -1,4 +1,4 @@
-package Objetos;
+package Trignometricas;
 
 public class Vector2{
     public float x,y;

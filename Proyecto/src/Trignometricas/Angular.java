@@ -1,4 +1,4 @@
-package Objetos;
+package Trignometricas;
 
 import java.awt.Point;
 

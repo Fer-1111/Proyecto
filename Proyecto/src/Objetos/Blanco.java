@@ -6,9 +6,18 @@ import javax.swing.JLabel;
 
 public class Blanco extends JLabel{
     
-    public float x = 1265;   // posicion x del blanco
-    public float y = 489;   //posicion y del blanco, con y fijo sobre el suelo
-    public float velXBlanco;
+    public float x ;
+    public float y;
+    public float velX;
+    public Blanco(){
+        x = 1265;
+        y = 490;
+    }
+
+    /**
+     *
+     * @param g
+     */
     @Override
     public void paint(Graphics g){
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/BlancoAuto.png"));
@@ -16,11 +25,11 @@ public class Blanco extends JLabel{
     }
     
     public void MoverBlancoIzquierda(){
-        velXBlanco = -5f;
+        velX = -5f;
     }
 
     public void MoverBlancoDerecha(){
-        velXBlanco = 5f;           
+        velX = 5f;           
     }
     public void LimiteDelMapaBlanco(){
         if(x <= -200){
@@ -29,5 +38,11 @@ public class Blanco extends JLabel{
         if(x >= 1265){
             x = -195;
         }
+    }
+    public float posicionX(){
+        return x;
+    }
+    public float posicionY(){
+        return y;
     }
 }
