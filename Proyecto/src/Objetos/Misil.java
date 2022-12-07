@@ -74,8 +74,6 @@ public class Misil{
     
     public boolean checkearObjectivo(float x, float y) {
         Vector2 dist = new Vector2(x - this.x, y - this.y);
-
-        // si el objetivo esta fuera del rango radial, descartar
         float mag = dist.magnitud();
         if (mag > radio) {
             return false;

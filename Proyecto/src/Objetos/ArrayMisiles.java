@@ -20,6 +20,7 @@ public class ArrayMisiles{
         if(Misiles.size() > 0){
             Misiles.get(0).paint(g);
         }
+        
     }
     public Misil arrayPosicionMisil(int i){
         return Misiles.get(i);

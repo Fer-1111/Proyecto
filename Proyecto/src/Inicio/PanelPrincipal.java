@@ -18,7 +18,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     
     public PanelPrincipal() {
         super();
-        cantMisiles = 10;
+        cantMisiles = 2;
         av = new Avion(cantMisiles);
         bl = new Blanco();
         posicionMouse = new Vector2(0,0);
@@ -61,10 +61,10 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
            av.MoverAvionAbajo();
        }
        if(e.getExtendedKeyCode() == KeyEvent.VK_SPACE){
-           av.MisilesAvion.arrayPosicionMisil(0).velocidad = 5f;
-           if(contador == 1){
-               av.MisilesAvion.arrayPosicionMisil(0).angulo = (float) getRandomIntegerBetweenRange(40, 140);
-               contador--;
+           if(contador == 1 && !av.MisilesAvion.estaVacio()){
+                av.MisilesAvion.arrayPosicionMisil(0).velocidad = 5f;
+                av.MisilesAvion.arrayPosicionMisil(0).angulo = (float) getRandomIntegerBetweenRange(40, 140);
+                contador--;   
            }
            
        }
@@ -75,24 +75,27 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         posicionMouse.y = me.getY();
     }
     @Override
-    public void actionPerformed ( ActionEvent me){
+    public void actionPerformed(ActionEvent me){
        
         av.x = av.x + av.velX;
         bl.x = bl.x + bl.velX;
-        if(contador == 1){
-        av.MisilesAvion.arrayPosicionMisil(0).x = (av.x+80) + av.velX;
-        av.MisilesAvion.arrayPosicionMisil(0).y = (av.y+60) + av.velY;
+        if(contador == 1 && !av.MisilesAvion.estaVacio()){
+            av.MisilesAvion.arrayPosicionMisil(0).x = (av.x+80) + av.velX;
+            av.MisilesAvion.arrayPosicionMisil(0).y = (av.y+60) + av.velY;
         }
         bl.LimiteDelMapaBlanco();
         av.LimiteDelMapaAvion(); 
         
         if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
             av.girarMisil(bl.posicionX(), bl.posicionY());
-            av.MisilesAvion.getMisil();
-            contador++;
+            if(!av.MisilesAvion.estaVacio()){
+                av.MisilesAvion.getMisil();
+                contador++;
+            }
         }
-        av.MisilesAvion.arrayPosicionMisil(0).mover();
-        
+        if(!av.MisilesAvion.estaVacio()){
+            av.MisilesAvion.arrayPosicionMisil(0).mover();
+        }
         repaint();  
     }
     @Override
