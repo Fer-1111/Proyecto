@@ -27,8 +27,8 @@ public class Misil{
         radio = 350;
         velAngular = 5f;
         t = 10f;
-        velX=1;
-        velY=1;
+        velX=1f;
+        velY=1f;
     }
     
     
@@ -145,10 +145,5 @@ public class Misil{
     double x = (int)(Math.random()*((max-min)+1))+min;
     return x;
     }
-    
-    /*public void moverMisilDerecha(){
-        velX = 2;
-       
-    }*/
-    
+
 }

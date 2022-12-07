@@ -61,7 +61,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
            av.MoverAvionAbajo();
        }
        if(e.getExtendedKeyCode() == KeyEvent.VK_SPACE){
-           av.MisilesAvion.arrayPosicionMisil(0).velocidad = 0.5f;
+           av.MisilesAvion.arrayPosicionMisil(0).velocidad = 5f;
            if(contador == 1){
                av.MisilesAvion.arrayPosicionMisil(0).angulo = (float) getRandomIntegerBetweenRange(40, 140);
                contador--;
@@ -88,7 +88,8 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         
         if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
             av.girarMisil(bl.posicionX(), bl.posicionY());
-            //av.MisilesAvion.getMisil();
+            av.MisilesAvion.getMisil();
+            contador++;
         }
         av.MisilesAvion.arrayPosicionMisil(0).mover();
         

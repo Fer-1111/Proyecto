@@ -25,11 +25,11 @@ public class Blanco extends JLabel{
     }
     
     public void MoverBlancoIzquierda(){
-        velX = -1f;
+        velX = -4f;
     }
 
     public void MoverBlancoDerecha(){
-        velX = 1f;           
+        velX = 4f;           
     }
     public void LimiteDelMapaBlanco(){
         if(x <= -200){

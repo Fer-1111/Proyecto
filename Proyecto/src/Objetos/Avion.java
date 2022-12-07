@@ -16,7 +16,7 @@ public class Avion extends JLabel{
         MisilesAvion = new ArrayMisiles();
         x = 1080;
         y = 0;
-        velY = 1;
+        velY = 4f;
         for(int iteradorMisil = 0; iteradorMisil < cantMisiles ; iteradorMisil++){
             MisilesAvion.addMisil(new Misil());
         }
@@ -49,13 +49,13 @@ public class Avion extends JLabel{
         return false;
     }
     public void MoverAvionIzquierda(){
-        velX = -1;
+        velX = -4f;
         if(x == -200){
             x = 1265;
         }        
     }
     public void MoverAvionDerecha(){
-        velX = 1;
+        velX = 4f;
         if(x == -200){
             x = 1265;
         }        
