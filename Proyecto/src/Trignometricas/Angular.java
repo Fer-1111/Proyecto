@@ -1,7 +1,10 @@
 package Trignometricas;
 
 import java.awt.Point;
-
+/**
+ * Genera los puntos que se usaran en distintas funciones
+ * 
+ */
 public class Angular {
 
     public static Point generaPunto(Point uno, double r, double alfaGiro) {

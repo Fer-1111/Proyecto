@@ -19,7 +19,9 @@ public class Misil{
     private float t;
     public float velX;
     public float velY;
-    
+    /**
+     * El constructor se encarfa de ajustar las posiciones, el angulo y el radio del misil, ademas de la velocidad
+     */
     public Misil(){
         x = 1170;
         y = 60;
@@ -31,7 +33,10 @@ public class Misil{
         velY=1f;
     }
     
-    
+    /**
+     * Se encarga de crear el ovalo que funcionara para detectar objetos dentro del radio
+     * @param g 
+     */
     public void paint(Graphics g){
         g.setColor(Color.black);
        // g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
@@ -71,7 +76,12 @@ public class Misil{
         g.drawPolygon(poly);
         
     }
-    
+    /**
+     * recibe dos parametros y se encarga de retornar true si el objeto esta frente al misil
+     * @param x
+     * @param y
+     * @return 
+     */
     public boolean checkearObjectivo(float x, float y) {
         Vector2 dist = new Vector2(x - this.x, y - this.y);
         float mag = dist.magnitud();
@@ -90,7 +100,11 @@ public class Misil{
         } // sino, descartar
         else return false;
     }
-    
+    /**
+     * recibe dos parametros y segun estos ajusta el angulo de giro
+     * @param x
+     * @param y 
+     */
     public void girar(float x, float y) {
         Vector2 dist = new Vector2(x - this.x, y - this.y);
 
@@ -122,9 +136,11 @@ public class Misil{
             angulo -= 360f;
         }
     }
-    
+    /**
+     * ajusta las posiciones del misil, segun la velocidad y el angulo
+     */
     public void mover(){//llamar en repaint
-        //cambiar x e y, dependiendo del angulo y la velocidad
+        
             Vector2 frente = new Vector2((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
             frente.escalar(velocidad);
         
@@ -138,7 +154,12 @@ public class Misil{
             if(y < 0) y += Ventana.HEIGHT;
         
     }
-    
+    /**
+     * recibe dos parametros para generar numeros aleatorios que se usaran en los angulos
+     * @param min
+     * @param max
+     * @return 
+     */
     public static double getRandomIntegerBetweenRange(double min, double max){
     double x = (int)(Math.random()*((max-min)+1))+min;
     return x;

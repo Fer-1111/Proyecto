@@ -1,5 +1,8 @@
 package Trignometricas;
-
+/**
+ * 
+ * Se encarga de trabajar con los vectores, de definir su magnitud y de normalizar
+ */
 public class Vector2{
     public float x,y;
     

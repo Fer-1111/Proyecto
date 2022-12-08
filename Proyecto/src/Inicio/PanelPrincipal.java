@@ -15,7 +15,9 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     public Vector2 posicionMouse;
     public int contador;
     int cantMisiles;
-    
+    /**
+     * El contructor se encanga de inicializar variavles y definir tamaños
+     */
     public PanelPrincipal() {
         super();
         cantMisiles = 2;
@@ -29,6 +31,9 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     }
     
     @Override
+    /**
+     * se encarga de dibujar el fondo y los elementos como el avion y el blanco
+     */
     public void paint(Graphics g){
         super.paint(g);
         
@@ -41,6 +46,9 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         Toolkit.getDefaultToolkit().sync();
     }
         @Override
+        /**
+         * Se encarga de definir las teclas con las cuales se moveran los objetos
+         */
     public void keyPressed(KeyEvent e) {
         if(e.getExtendedKeyCode() == KeyEvent.VK_LEFT){          
            bl.MoverBlancoIzquierda();                
@@ -70,11 +78,15 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
        }
     }
         @Override
+        
     public void mouseMoved(MouseEvent me) {
         posicionMouse.x = me.getX();
         posicionMouse.y = me.getY();
     }
     @Override
+    /**
+     * Defines los limites de los elementos, ademas de verificar el estado de arrayMisiles para asi mover las posiciones
+     */
     public void actionPerformed(ActionEvent me){
        
         av.x = av.x + av.velX;

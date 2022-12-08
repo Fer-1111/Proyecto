@@ -8,7 +8,9 @@ public class Ventana extends JFrame{
     public static int WIDTH = 1280;
     public static int HEIGHT = 720;
     PanelPrincipal jpanel = new PanelPrincipal();
-    
+    /**
+     * Contiene todo lo necesario para crear la ventana, con el tamañp definido
+     */
     public Ventana() {
         
         setSize(WIDTH, HEIGHT);
