@@ -18,8 +18,6 @@ public class Ventana extends JFrame{
         setLayout(new BorderLayout());
         setLocationRelativeTo(jpanel);
         addKeyListener(jpanel);
-        addMouseListener(jpanel);
-        addMouseMotionListener(jpanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

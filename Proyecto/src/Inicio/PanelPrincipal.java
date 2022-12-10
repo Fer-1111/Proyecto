@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class PanelPrincipal extends JPanel implements KeyListener, ActionListener, MouseListener, MouseMotionListener{
+public class PanelPrincipal extends JPanel implements KeyListener, ActionListener{
    
     private final Avion av;
     private final Blanco bl;
@@ -77,12 +77,6 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
            
        }
     }
-        @Override
-        
-    public void mouseMoved(MouseEvent me) {
-        posicionMouse.x = me.getX();
-        posicionMouse.y = me.getY();
-    }
     @Override
     /**
      * Defines los limites de los elementos, ademas de verificar el estado de arrayMisiles para asi mover las posiciones
@@ -94,19 +88,23 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         if(contador == 1 && !av.MisilesAvion.estaVacio()){
             av.MisilesAvion.arrayPosicionMisil(0).x = (av.x+80) + av.velX;
             av.MisilesAvion.arrayPosicionMisil(0).y = (av.y+60) + av.velY;
+            
         }
+        
         bl.LimiteDelMapaBlanco();
         av.LimiteDelMapaAvion(); 
         
         if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
             av.girarMisil(bl.posicionX(), bl.posicionY());
-            if(!av.MisilesAvion.estaVacio()){
-                //av.MisilesAvion.getMisil();
-                //contador++;
+            av.MisilesAvion.arrayPosicionMisil(0).radio-=30;
+            if(!av.MisilesAvion.estaVacio() && av.MisilesAvion.arrayPosicionMisil(0).radio == 80){
+                av.MisilesAvion.getMisil();
+                contador++;
             }
         }
         if(!av.MisilesAvion.estaVacio()){
             av.MisilesAvion.arrayPosicionMisil(0).mover();
+            
         }
         repaint();  
     }
@@ -114,16 +112,4 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     public void keyTyped(KeyEvent e){}
     @Override
     public void keyReleased(KeyEvent e){}
-    @Override
-    public void mouseClicked(MouseEvent me){}
-    @Override
-    public void mousePressed(MouseEvent me){}
-    @Override
-    public void mouseReleased(MouseEvent me){}
-    @Override
-    public void mouseEntered(MouseEvent me){}
-    @Override
-    public void mouseExited(MouseEvent me){}
-    @Override
-    public void mouseDragged(MouseEvent me){}
 }

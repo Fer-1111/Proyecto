@@ -13,22 +13,20 @@ public class Misil{
     public float x;
     public float y;
     public float angulo;
-    private float radio;
+    public float radio;
     private float velAngular;
     public float velocidad;
     private float t;
     public float velX;
     public float velY;
-    private CircurferenciaDeColision ci;
     /**
      * El constructor se encarfa de ajustar las posiciones, el angulo y el radio del misil, ademas de la velocidad
      */
     public Misil(){
-        ci = new CircurferenciaDeColision();
         x = 1170;
         y = 60;
         angulo = 180;
-        radio = 50;
+        radio = 350;
         velAngular = 5f;
         t = 10f;
         velX=1f;
@@ -70,7 +68,7 @@ public class Misil{
         
         g.setColor(Color.black);
         g.drawPolygon(poly);
-        ci.paint(g);
+        
         
         
     }
