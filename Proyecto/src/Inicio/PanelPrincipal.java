@@ -101,8 +101,8 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
             av.girarMisil(bl.posicionX(), bl.posicionY());
             if(!av.MisilesAvion.estaVacio()){
-                av.MisilesAvion.getMisil();
-                contador++;
+                //av.MisilesAvion.getMisil();
+                //contador++;
             }
         }
         if(!av.MisilesAvion.estaVacio()){

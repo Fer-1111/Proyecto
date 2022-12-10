@@ -1,15 +1,14 @@
 package Objetos;
 
+import Inicio.Ventana;
 import Trignometricas.Angular;
 import Trignometricas.Vector2;
-import Inicio.Ventana;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 
-public class Misil{
-    
+public class CircurferenciaDeColision{
     public float x;
     public float y;
     public float angulo;
@@ -19,16 +18,14 @@ public class Misil{
     private float t;
     public float velX;
     public float velY;
-    private CircurferenciaDeColision ci;
     /**
      * El constructor se encarfa de ajustar las posiciones, el angulo y el radio del misil, ademas de la velocidad
      */
-    public Misil(){
-        ci = new CircurferenciaDeColision();
+    public CircurferenciaDeColision(){
         x = 1170;
         y = 60;
         angulo = 180;
-        radio = 50;
+        radio = 350;
         velAngular = 5f;
         t = 10f;
         velX=1f;
@@ -42,37 +39,6 @@ public class Misil{
     public void paint(Graphics g){
         g.setColor(Color.black);
         g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
-        Polygon poly = new Polygon();
-      
-        Point p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo);
-        poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo + 30);
-        poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo + 150);
-        poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo + 150);
-        poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo - 150);
-        poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo - 150);
-        poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo - 30);
-        poly.addPoint(p.x, p.y);
-        
-        g.setColor(Color.white);
-        g.fillPolygon(poly);
-        
-        g.setColor(Color.black);
-        g.drawPolygon(poly);
-        ci.paint(g);
-        
-        
     }
     /**
      * recibe dos parametros y se encarga de retornar true si el objeto esta frente al misil
