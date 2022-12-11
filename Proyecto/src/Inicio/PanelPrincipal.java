@@ -75,8 +75,20 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
                 av.MisilesAvion.arrayPosicionMisil(0).velocidad = 3f;
                 av.MisilesAvion.arrayPosicionMisil(0).angulo = (float) getRandomIntegerBetweenRange(40, 140);
                 contador--;   
+           }   
+       }
+        if(e.getKeyChar() == 'j' || e.getKeyChar() == 'J'){
+            if(!av.MisilesAvion.estaVacio()){
+               av.MisilesAvion.arrayPosicionMisil(0).velocidad -= 0.5f;
+               if(av.MisilesAvion.arrayPosicionMisil(0).velocidad<0.5f){
+                   av.MisilesAvion.arrayPosicionMisil(0).velocidad = 0.5f;
+               }
            }
-           
+       }
+        if(e.getKeyChar() == 'k' || e.getKeyChar() == 'K'){
+           if(!av.MisilesAvion.estaVacio()){
+            av.MisilesAvion.arrayPosicionMisil(0).velocidad += 0.5f;
+            }
        }
     }
     @Override
