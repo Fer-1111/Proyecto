@@ -39,7 +39,7 @@ public class Misil{
      */
     public void paint(Graphics g){
         g.setColor(Color.black);
-        g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+        //g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
         Polygon poly = new Polygon();
       
         Point p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo);

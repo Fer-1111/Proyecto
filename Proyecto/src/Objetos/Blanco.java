@@ -17,7 +17,7 @@ public class Blanco extends JLabel {
      */
     public Blanco() {
         x = 1265;
-        y = 490;
+        y = 525;
     }
 
     /**
@@ -28,7 +28,7 @@ public class Blanco extends JLabel {
     @Override
     public void paint(Graphics g) {
         ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/BlancoAuto.png"));
-        g.drawImage(Fondo.getImage(), (int) x, (int) y, 150, 100, this);
+        g.drawImage(Fondo.getImage(), (int) x, (int) y, 130, 70, this);
     }
 
     /**
@@ -36,14 +36,14 @@ public class Blanco extends JLabel {
      * hacia la izquierda
      */
     public void MoverBlancoIzquierda() {
-        velX = -4f;
+        velX = -2f;
     }
 
     /**
      * Ajusta una velocidad constante del Blanco hacia la derecha
      */
     public void MoverBlancoDerecha() {
-        velX = 4f;
+        velX = 2f;
     }
 
     /**

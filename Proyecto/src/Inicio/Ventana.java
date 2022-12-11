@@ -1,6 +1,7 @@
 package Inicio;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import javax.swing.JFrame;
 
 public class Ventana extends JFrame{
@@ -12,7 +13,6 @@ public class Ventana extends JFrame{
      * Contiene todo lo necesario para crear la ventana, con el tamañp definido
      */
     public Ventana() {
-        
         setSize(WIDTH, HEIGHT);
         add(jpanel,BorderLayout.CENTER);
         setLayout(new BorderLayout());

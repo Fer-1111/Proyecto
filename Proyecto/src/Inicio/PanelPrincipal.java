@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class PanelPrincipal extends JPanel implements KeyListener, ActionListener{
    
     private final Avion av;
@@ -15,6 +16,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
     public Vector2 posicionMouse;
     public int contador;
     int cantMisiles;
+    JButton boton1;
     /**
      * El contructor se encanga de inicializar variavles y definir tamaños
      */
@@ -27,7 +29,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         contador = 1;       
         setSize(1280, 720);
         Timer t = new Timer(1,this);
-        t.start();    
+        t.start();   
     }
     
     @Override
@@ -70,7 +72,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
        }
        if(e.getExtendedKeyCode() == KeyEvent.VK_SPACE){
            if(contador == 1 && !av.MisilesAvion.estaVacio()){
-                av.MisilesAvion.arrayPosicionMisil(0).velocidad = 5f;
+                av.MisilesAvion.arrayPosicionMisil(0).velocidad = 3f;
                 av.MisilesAvion.arrayPosicionMisil(0).angulo = (float) getRandomIntegerBetweenRange(40, 140);
                 contador--;   
            }
