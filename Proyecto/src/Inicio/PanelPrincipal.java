@@ -12,7 +12,7 @@ import javax.swing.*;
 public class PanelPrincipal extends JPanel implements KeyListener, ActionListener{
    
     private final Avion av;
-    private final Blanco bl;
+    private Blanco bl;
     public Vector2 posicionMouse;
     public int contador;
     int cantMisiles;
@@ -24,7 +24,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         super();
         cantMisiles = 2;
         av = new Avion(cantMisiles);
-        bl = new Blanco();
+        bl = new Auto();
         posicionMouse = new Vector2(0,0);
         contador = 1;       
         setSize(1280, 720);
@@ -90,6 +90,12 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
             av.MisilesAvion.arrayPosicionMisil(0).velocidad += 0.5f;
             }
        }
+        if(e.getKeyChar() == '1'){
+            bl = new Dinosaurio();
+        }
+        if(e.getKeyChar() == '2'){
+            bl = new Auto();
+        }
     }
     @Override
     /**

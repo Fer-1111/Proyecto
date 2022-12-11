@@ -1,13 +1,11 @@
 package Objetos;
-
 import java.awt.Graphics;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 /**
  * 
  * Blanco representa a un auto que será seguido por un misil 
  */
-public class Blanco extends JLabel {
+public abstract class Blanco extends JLabel {
 
     public float x;
     public float y;
@@ -17,33 +15,23 @@ public class Blanco extends JLabel {
      */
     public Blanco() {
         x = 1265;
-        y = 525;
+        y = 490;
     }
-
-    /**
-     * Metodo paint para mostar la imagen del Blanco
-     *
-     * @param g
-     */
-    @Override
-    public void paint(Graphics g) {
-        ImageIcon Fondo = new ImageIcon(getClass().getResource("/Imagenes/BlancoAuto.png"));
-        g.drawImage(Fondo.getImage(), (int) x, (int) y, 130, 70, this);
-    }
-
     /**
      * Ajusta una velocidad constante para que el blanco se mueva constante
      * hacia la izquierda
      */
+    @Override
+    public abstract void paint(Graphics g);
     public void MoverBlancoIzquierda() {
-        velX = -2f;
+        velX = -getRandomIntegerBetweenRange();
     }
 
     /**
      * Ajusta una velocidad constante del Blanco hacia la derecha
      */
     public void MoverBlancoDerecha() {
-        velX = 2f;
+        velX = getRandomIntegerBetweenRange();
     }
 
     /**
@@ -74,5 +62,11 @@ public class Blanco extends JLabel {
      */
     public float posicionY() {
         return y;
+    }
+    public static float getRandomIntegerBetweenRange(){
+        float max = 10f;
+        float min = 1f;
+        float x = (int)(Math.random()*((max-min)+1))+min;
+        return x;
     }
 }
