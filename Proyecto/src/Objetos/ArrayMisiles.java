@@ -31,7 +31,7 @@ public class ArrayMisiles{
         return Misiles.remove(0);
     }
     /**
-     * Se encarda de dibujar el misil
+     * Se encarga de dibujar el misil
      * @param g 
      */
     public void paint(Graphics g){
@@ -47,5 +47,9 @@ public class ArrayMisiles{
      */
     public Misil arrayPosicionMisil(int i){
         return Misiles.get(i);
+    }
+    
+    public void removeMisil(){
+        Misiles.remove(0);
     }
 }

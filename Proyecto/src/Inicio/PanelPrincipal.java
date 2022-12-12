@@ -22,7 +22,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
      */
     public PanelPrincipal() {
         super();
-        cantMisiles = 2;
+        cantMisiles = 10;
         av = new Avion(cantMisiles);
         bl = new Auto();
         posicionMouse = new Vector2(0,0);
@@ -30,6 +30,7 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         setSize(1280, 720);
         Timer t = new Timer(1,this);
         t.start();   
+        
     }
     
     @Override
@@ -113,6 +114,10 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         
         bl.LimiteDelMapaBlanco();
         av.LimiteDelMapaAvion(); 
+        if(!av.MisilesAvion.estaVacio()){
+         LimiteMapaMisil();   
+        }
+        
         
         if(av.checkBlanco(bl.posicionX(), bl.posicionY())){
             av.girarMisil(bl.posicionX(), bl.posicionY());
@@ -128,6 +133,17 @@ public class PanelPrincipal extends JPanel implements KeyListener, ActionListene
         }
         repaint();  
     }
+    
+    public void LimiteMapaMisil(){
+        if(av.MisilesAvion.arrayPosicionMisil(0).y >= 550 && !av.MisilesAvion.estaVacio()){
+            
+            av.MisilesAvion.removeMisil();
+            contador++;
+        }
+    }
+            
+            
+            
     @Override
     public void keyTyped(KeyEvent e){}
     @Override

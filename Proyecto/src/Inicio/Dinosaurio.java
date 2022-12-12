@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 class Dinosaurio extends Blanco{
     /**
-     * Metodo paint para mostar la imagen del Blanco
+     * Metodo paint para mostrar la imagen del Dinosaurio
      *
      * @param g
      */

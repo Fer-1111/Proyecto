@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
  */
 class Auto extends Blanco{
     /**
-     * Metodo paint para mostar la imagen del Blanco
+     * Metodo paint para mostar la imagen del Auto
      *
      * @param g
      */

@@ -8,8 +8,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 
-public class Misil{
-    
+public class Misil {
+
     public float x;
     public float y;
     public float angulo;
@@ -19,64 +19,69 @@ public class Misil{
     private float t;
     public float velX;
     public float velY;
+
     /**
-     * El constructor se encarfa de ajustar las posiciones, el angulo y el radio del misil, ademas de la velocidad
+     * El constructor se encarga de ajustar las posiciones, el angulo y el radio
+     * del misil, ademas de la velocidad
      */
-    public Misil(){
+    public Misil() {
         x = 1170;
         y = 60;
+
         angulo = 180;
         radio = 350;
         velAngular = 5f;
         t = 10f;
-        velX=1f;
-        velY=1f;
+        velX = 1f;
+        velY = 1f;
     }
-    
+
     /**
-     * Se encarga de crear el ovalo que funcionara para detectar objetos dentro del radio
-     * @param g 
+     * Se encarga de dibujar el misil con Angular
+     *
+     * @param g
      */
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         g.setColor(Color.black);
         //g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
         Polygon poly = new Polygon();
-      
-        Point p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo);
+
+        Point p = Angular.generaPunto((int) x, (int) y, t * 2, -angulo);
         poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo + 30);
+
+        p = Angular.generaPunto((int) x, (int) y, t, -angulo + 30);
         poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo + 150);
+
+        p = Angular.generaPunto((int) x, (int) y, t, -angulo + 150);
         poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo + 150);
+
+        p = Angular.generaPunto((int) x, (int) y, t * 2, -angulo + 150);
         poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t * 2, -angulo - 150);
+
+        p = Angular.generaPunto((int) x, (int) y, t * 2, -angulo - 150);
         poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo - 150);
+
+        p = Angular.generaPunto((int) x, (int) y, t, -angulo - 150);
         poly.addPoint(p.x, p.y);
-        
-        p = Angular.generaPunto((int)x, (int)y, t, -angulo - 30);
+
+        p = Angular.generaPunto((int) x, (int) y, t, -angulo - 30);
         poly.addPoint(p.x, p.y);
-        
+
         g.setColor(Color.white);
         g.fillPolygon(poly);
-        
+
         g.setColor(Color.black);
         g.drawPolygon(poly);
-        
-        
-        
+
     }
+
     /**
-     * recibe dos parametros y se encarga de retornar true si el objeto esta frente al misil
+     * recibe dos parametros y se encarga de retornar true si el objeto esta
+     * frente al misil
+     *
      * @param x
      * @param y
-     * @return 
+     * @return
      */
     public boolean checkearObjectivo(float x, float y) {
         Vector2 dist = new Vector2(x - this.x, y - this.y);
@@ -91,15 +96,19 @@ public class Misil{
         frente.normalizar();
 
         // si el objetivo esta frente al misil, entonces retornar verdadero
-        if(Vector2.dot(dist, frente) > 0f){
+        if (Vector2.dot(dist, frente) > 0f) {
             return true;
         } // sino, descartar
-        else return false;
+        else {
+            return false;
+        }
     }
+
     /**
      * recibe dos parametros y segun estos ajusta el angulo de giro
+     *
      * @param x
-     * @param y 
+     * @param y
      */
     public void girar(float x, float y) {
         Vector2 dist = new Vector2(x - this.x, y - this.y);
@@ -132,33 +141,46 @@ public class Misil{
             angulo -= 360f;
         }
     }
+
     /**
      * ajusta las posiciones del misil, segun la velocidad y el angulo
      */
-    public void mover(){//llamar en repaint
-        
-            Vector2 frente = new Vector2((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
-            frente.escalar(velocidad);
-        
-            x += frente.x;
-            y += frente.y;
-        
-            if(x > Ventana.WIDTH) x -= Ventana.WIDTH;
-            if(x < 0) x += Ventana.WIDTH;
-        
-            if(y > Ventana.HEIGHT) y -= Ventana.HEIGHT;
-            if(y < 0) y += Ventana.HEIGHT;
-        
-    }
-    /**
-     * recibe dos parametros para generar numeros aleatorios que se usaran en los angulos
-     * @param min
-     * @param max
-     * @return 
-     */
-    public static double getRandomIntegerBetweenRange(double min, double max){
-    double x = (int)(Math.random()*((max-min)+1))+min;
-    return x;
+    public void mover() {//llamar en repaint
+
+        Vector2 frente = new Vector2((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
+        frente.escalar(velocidad);
+
+        x += frente.x;
+        y += frente.y;
+
+        if (x > Ventana.WIDTH) {
+            x -= Ventana.WIDTH;
+        }
+        if (x < 0) {
+            x += Ventana.WIDTH;
+        }
+
+        if (y > Ventana.HEIGHT) {
+            y -= Ventana.HEIGHT;
+        }
+        if (y < 0) {
+            y += Ventana.HEIGHT;
+        }
+
     }
 
+    /**
+     * recibe dos parametros para generar numeros aleatorios que se usaran en
+     * los angulos
+     *
+     * @param min
+     * @param max
+     * @return
+     */
+    public static double getRandomIntegerBetweenRange(double min, double max) {
+        double x = (int) (Math.random() * ((max - min) + 1)) + min;
+        return x;
+    }
+    
+    
 }
