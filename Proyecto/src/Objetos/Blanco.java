@@ -23,6 +23,7 @@ public abstract class Blanco extends JLabel {
      */
     @Override
     public abstract void paint(Graphics g);
+    
     public void MoverBlancoIzquierda() {
         velX = -getRandomIntegerBetweenRange();
     }
